@@ -1,0 +1,229 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+package learningPath;
+
+import java.util.Scanner;
+
+public class levelOne {
+
+	static Scanner scanner = new Scanner(System.in);
+
+	public static int selection() {
+
+		boolean validation = true;
+		int value = 0;
+		int selected = 0;
+		int[] question = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+		do {
+
+			try {
+
+				System.out.println("Select challenge: \n1- Calculator.\n2- Grade calculator.\n3- Even or odd.\n"
+						+ "4- Leap year.\n5- Simple interes calculator.\n6- Prime number checker.\n"
+						+ "7- Palindrome checker.\n8- Factorial calculator.\n9- Fibonacci sequence generator.\n"
+						+ "10- Temperature converter.\n0- Exit chalenge\n\nSelection? ");
+				String option = scanner.next();
+				selected = Integer.parseInt(option);
+				if (selected == 0) {
+					System.exit(0);
+				}
+				for (int number : question) {
+					if (number == selected) {
+						return selected;
+					}
+				}
+				System.out.println("Select a valid option\n");
+				validation = false;
+			} catch (NumberFormatException e) {
+				System.out.println("Your choice Is not a valid integer\n");
+			}
+		} while (true);
+
+	}
+
+	public static void calculator() {
+
+		char repeat = 'n';
+
+		do {
+			float a = 0, b = 0;
+			System.out.println("Choose first number:\n");
+			String number1 = scanner.next();
+			System.out.println("Choose second number:\n");
+			String number2 = scanner.next();
+			try {
+				a = Float.parseFloat(number1);
+			} catch (NumberFormatException e) {
+				System.out.println("Wrong value, only digits permited");
+			}
+
+			try {
+				b = Float.parseFloat(number2);
+			} catch (NumberFormatException e) {
+				System.out.println("Wrong value, only digits permited");
+			}
+
+			System.out.println("Select operation ( +, -, *, /, %)");
+			String operator = scanner.next();
+			char symbol = operator.charAt(0);
+
+			switch (symbol) {
+			case '+':
+				System.out.printf("The sum of a + b is %.2f", sum(a, b));
+				break;
+			case '-':
+				System.out.printf("The substraction of a - b is %.2f", substract(a, b));
+				break;
+			case '*':
+				System.out.printf("The multiplication of a * b is %.2f", multiply(a, b));
+				break;
+			case '/':
+				System.out.printf("The division of a / b is %.2f", divide(a, b));
+				break;
+			case '%':
+				System.out.println("The modulus of a % b is " + modulus(a, b));
+				break;
+			default:
+				System.out.println("Wrong operator.)");
+				break;
+			}
+
+			System.out.println("\n\nDo you want to perform another operation? ('Y' for YES / 'N' for NO)");
+			repeat = scanner.next().charAt(0);
+
+		} while (repeat == 'y' || repeat == 'Y');
+		selection();
+	}
+
+	public static float sum(float a, float b) {
+		return a + b;
+	}
+
+	public static float substract(float a, float b) {
+		return a - b;
+	}
+
+	public static float multiply(float a, float b) {
+		return a * b;
+	}
+
+	public static float divide(float a, float b) {
+		return a / b;
+	}
+
+	public static int modulus(float a, float b) {
+		return Math.round(a) % Math.round(b);
+	}
+
+	public static void gradeCalculation() {
+		
+	}
+
+	public static void evenOrOdd() {
+		System.out.println("option 3");
+	}
+
+	public static void leapYear() {
+
+	}
+
+	public static void SimpleInterest() {
+
+	}
+
+	public static void primeNumber() {
+
+	}
+
+	public static void palindromeChecker() {
+
+	}
+
+	public static void factorialCalculator() {
+
+	}
+
+	public static void fibonacciSequence() {
+
+	}
+
+	public static void temperatureConverter() {
+
+	}
+
+	public static void main(String[] args) {
+
+		int test = selection();
+
+		switch (test) {
+		case 1:
+			calculator();
+			break;
+		case 2:
+			gradeCalculation();
+			break;
+		case 3:
+			evenOrOdd();
+			break;
+		case 4:
+			leapYear();
+			break;
+		case 5:
+			SimpleInterest();
+			break;
+		case 6:
+			primeNumber();
+			break;
+		case 7:
+			palindromeChecker();
+			break;
+		case 8:
+			factorialCalculator();
+			break;
+		case 9:
+			fibonacciSequence();
+			break;
+		case 10:
+			temperatureConverter();
+			break;
+		default:
+			System.out.println("No option available");
+			break;
+		}
+	}
+}
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
